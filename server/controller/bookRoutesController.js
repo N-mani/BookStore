@@ -63,7 +63,11 @@ const deleteBook = async (req, res) => {
     const bookId = req.params.id
     if (!bookId) return res.status(404).send('Book Not Found')
     const deletedBook = await Book.findByIdAndDelete(bookId)
-    res.send("Book Deleted successfully")
+    res.send({
+      status: "success",
+      message: "Book Deleted successfully",
+      deletedBook
+    })
   } catch (error) {
     res.status(404).send('Oops there is an error')
   }
